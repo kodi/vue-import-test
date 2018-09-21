@@ -33,7 +33,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-import {TestEnum} from '@/store/store';
+import {TestEnum} from '../store/store';
+import {Action, State} from 'vuex-class';
 
 const z = TestEnum.TEST_VALUE;
 
@@ -41,9 +42,9 @@ const z = TestEnum.TEST_VALUE;
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
-  private test() {
-      const a = TestEnum.TEST_VALUE;
-  }
+  @Action('setVersionAction') private setVersion!: (version: string) => Promise<void>;
+  @State((state) => state.versionString) private state!: string;
+
 }
 </script>
 
